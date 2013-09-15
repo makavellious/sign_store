@@ -1,4 +1,10 @@
 SignStore::Application.routes.draw do
+  resources :locations
+
+
+  resources :signs
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
