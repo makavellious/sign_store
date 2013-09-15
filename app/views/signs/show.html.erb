@@ -1,0 +1,29 @@
+<%- model_class = Sign -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:dir) %>:</strong></dt>
+  <dd><%= @sign.dir %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @sign.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mod) %>:</strong></dt>
+  <dd><%= @sign.mod %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mod_dir) %>:</strong></dt>
+  <dd><%= @sign.mod_dir %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:quantity) %>:</strong></dt>
+  <dd><%= @sign.quantity %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              signs_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_sign_path(@sign), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              sign_path(@sign),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  dir: MyString
+  name: MyString
+  mod: MyString
+  mod_dir: MyString
+  quantity: 1
+
+two:
+  dir: MyString
+  name: MyString
+  mod: MyString
+  mod_dir: MyString
+  quantity: 1
