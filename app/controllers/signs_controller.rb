@@ -2,8 +2,13 @@ class SignsController < ApplicationController
   # GET /signs
   # GET /signs.json
   def index
-    @signs = Sign.all
 
+    unless params[:name].nil?
+      @signs = Sign.by_location(params[:name])
+    else
+      @signs = Sign.all
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @signs }

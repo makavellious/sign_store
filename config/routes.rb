@@ -4,6 +4,8 @@ SignStore::Application.routes.draw do
 
   resources :signs
 
+  match '/:name', to: 'signs#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
