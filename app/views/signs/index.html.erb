@@ -43,6 +43,10 @@
   </tbody>
 </table>
 
+<% if @location.nil? %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_sign_path,
             :class => 'btn btn-primary' %>
+<% else %>
+<%= link_to t('.new', :default => t("helpers.links.new")), "#{@location.name.downcase}/new", class: 'btn btn-primary' %>
+<% end %>

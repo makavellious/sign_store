@@ -5,7 +5,7 @@ class SignsController < ApplicationController
 
     unless params[:name].nil?
       @signs = Sign.by_location(params[:name])
-      @location = Location.where(name: params[:name].titleize)
+      @location = Location.where(name: params[:name].titleize).first
     else
       @signs = Sign.all
     end
@@ -48,6 +48,21 @@ class SignsController < ApplicationController
   # POST /signs.json
   def create
     @sign = Sign.new(params[:sign])
+    @location = Location.find(@sign.location_id)
+
+    respond_to do |format|
+      if @sign.save
+        format.html { redirect_to location_index_path(@location.name.downcase), notice: 'Sign was successfully created.' }
+        format.json { render json: @sign, status: :created, location: @sign }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @sign.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create_by_location
+    @sign = Sign.new(params[:sign])
 
     respond_to do |format|
       if @sign.save
@@ -64,10 +79,11 @@ class SignsController < ApplicationController
   # PUT /signs/1.json
   def update
     @sign = Sign.find(params[:id])
+    @location = Location.find(@sign.location_id)
 
     respond_to do |format|
       if @sign.update_attributes(params[:sign])
-        format.html { redirect_to @sign, notice: 'Sign was successfully updated.' }
+        format.html { redirect_to location_index_path(@location.name.downcase), notice: 'Sign was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,10 +96,11 @@ class SignsController < ApplicationController
   # DELETE /signs/1.json
   def destroy
     @sign = Sign.find(params[:id])
+    @location = Location.find(@sign.location_id)
     @sign.destroy
 
     respond_to do |format|
-      format.html { redirect_to signs_url }
+      format.html { redirect_to location_index_path(@location.name.downcase) }
       format.json { head :no_content }
     end
   end

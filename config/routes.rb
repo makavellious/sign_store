@@ -5,7 +5,7 @@ SignStore::Application.routes.draw do
   resources :signs
 
   match '/:name/new', to: 'signs#new'
-  match '/:name', to: 'signs#index'
+  match '/:name', to: 'signs#index', as: 'location_index'
 
 
   # The priority is based upon order of creation:

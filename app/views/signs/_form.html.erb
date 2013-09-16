@@ -42,7 +42,7 @@
       <%= f.number_field :location_id, :class => 'number_field' %>
     </div>
   <% else %>
-
+      <%= f.hidden_field :location_id, :value => "#{@location.id}" %>
   <% end %>
   </div>
 

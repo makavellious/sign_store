@@ -4,8 +4,7 @@ class Sign < ActiveRecord::Base
   belongs_to :location
   before_validation :set_defaults
   validates :name, :mod, :quantity, :price, :location_id, presence: true
-  validates :location_id, uniqueness: true
-
+  
   def set_defaults
   	self.price ||= 5
   	self.quantity ||= 0
