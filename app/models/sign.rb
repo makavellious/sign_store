@@ -15,7 +15,14 @@ class Sign < ActiveRecord::Base
   end
 
   def self.by_location(location_name)
-  	Location.where(name: location_name.titleize).first.signs.all
+  	l = Location.where(name: location_name.titleize).first
+  	
+  	unless l.nil?
+  	 l.signs.all
+  	else
+  	 Sign.all
+  	end
+
   end
 
 end

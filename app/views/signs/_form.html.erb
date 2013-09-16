@@ -36,10 +36,14 @@
     </div>
   </div>
   <div class="control-group">
+  <% if @location.nil? %>
     <%= f.label :location_id, :class => 'control-label' %>
     <div class="controls">
       <%= f.number_field :location_id, :class => 'number_field' %>
     </div>
+  <% else %>
+
+  <% end %>
   </div>
 
   <div class="form-actions">

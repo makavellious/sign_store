@@ -5,6 +5,7 @@ class SignsController < ApplicationController
 
     unless params[:name].nil?
       @signs = Sign.by_location(params[:name])
+      @location = Location.where(name: params[:name].titleize)
     else
       @signs = Sign.all
     end
@@ -30,6 +31,7 @@ class SignsController < ApplicationController
   # GET /signs/new.json
   def new
     @sign = Sign.new
+    @location = Location.where(name: params[:name].titleize).first unless params[:name].nil?
 
     respond_to do |format|
       format.html # new.html.erb

@@ -4,6 +4,7 @@ SignStore::Application.routes.draw do
 
   resources :signs
 
+  match '/:name/new', to: 'signs#new'
   match '/:name', to: 'signs#index'
 
 
