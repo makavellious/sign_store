@@ -1,5 +1,5 @@
 class Sign < ActiveRecord::Base
-  attr_accessible :dir, :mod, :mod_dir, :name, :quantity, :price, :quantity, :location_id
+  attr_accessible :dir, :mod, :mod_dir, :name, :price, :quantity, :location_id
 
   belongs_to :location
   before_validation :set_defaults
@@ -9,8 +9,12 @@ class Sign < ActiveRecord::Base
   	self.price ||= 5
   	self.quantity ||= 0
   	self.dir.upcase!
-  	self.mod.capitalize!
+  	self.mod.upcase!
   	self.name = self.name.titleize
+  end
+
+  def update_quantity(n)
+    self.quantity += n
   end
 
   def self.by_location(location_name)

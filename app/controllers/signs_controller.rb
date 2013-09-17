@@ -3,7 +3,7 @@ class SignsController < ApplicationController
   # GET /signs.json
   def index
 
-    unless params[:name].nil?
+    unless params[:name].nil? #Sets location instance if a location name was added in the route
       @signs = Sign.by_location(params[:name])
       @location = Location.where(name: params[:name].titleize).first
     else
@@ -20,6 +20,7 @@ class SignsController < ApplicationController
   # GET /signs/1.json
   def show
     @sign = Sign.find(params[:id])
+    @location = Location.find(@sign.location_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,25 +62,12 @@ class SignsController < ApplicationController
     end
   end
 
-  def create_by_location
-    @sign = Sign.new(params[:sign])
-
-    respond_to do |format|
-      if @sign.save
-        format.html { redirect_to @sign, notice: 'Sign was successfully created.' }
-        format.json { render json: @sign, status: :created, location: @sign }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @sign.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PUT /signs/1
   # PUT /signs/1.json
   def update
     @sign = Sign.find(params[:id])
     @location = Location.find(@sign.location_id)
+    @sign.quantity += params[:update_quantity] unless params[:update_quantity].nil?
 
     respond_to do |format|
       if @sign.update_attributes(params[:sign])

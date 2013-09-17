@@ -3,21 +3,44 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:dir) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:mod) %></th>
+      <th><%= model_class.human_attribute_name(:mod_dir) %></th>
+      <th><%= model_class.human_attribute_name(:quantity) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th>Change Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= @sign.id %></td>
+        <td><%= @sign.dir %></td>
+        <td><%= @sign.name %></td>
+        <td><%= @sign.mod %></td>
+        <td><%= @sign.mod_dir %></td>
+        <td><%= @sign.quantity %></td>
+        <td><%= number_to_currency(@sign.price) %></td>
+        <td>
+          <%= link_to "-", "test", :class => 'btn btn-danger' %>
+          <%= link_to "+", "test", :class => 'btn' %>
+        </td>
+      </tr>
+  </tbody>
+</table>
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:dir) %>:</strong></dt>
-  <dd><%= @sign.dir %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @sign.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:mod) %>:</strong></dt>
-  <dd><%= @sign.mod %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:mod_dir) %>:</strong></dt>
-  <dd><%= @sign.mod_dir %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:quantity) %>:</strong></dt>
-  <dd><%= @sign.quantity %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @sign.price %></dd>
   <dt><strong><%= model_class.human_attribute_name(:location_id) %>:</strong></dt>
-  <dd><%= @sign.location_id %></dd>
+  <dd><%= @location.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:created_at) %>:</strong></dt>
+  <dd><%= @sign.created_at.localtime.strftime("%I:%M %P on %m-%d-%Y") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:updated_at) %>:</strong></dt>
+  <dd><%= @sign.updated_at.localtime.strftime("%I:%M %P on %m-%d-%Y") %></dd>
+
 </dl>
 
 <div class="form-actions">
