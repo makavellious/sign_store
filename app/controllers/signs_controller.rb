@@ -67,7 +67,6 @@ class SignsController < ApplicationController
   def update
     @sign = Sign.find(params[:id])
     @location = Location.find(@sign.location_id)
-    @sign.quantity += params[:update_quantity] unless params[:update_quantity].nil?
 
     respond_to do |format|
       if @sign.update_attributes(params[:sign])
@@ -78,6 +77,23 @@ class SignsController < ApplicationController
         format.json { render json: @sign.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update_qty
+    @sign = Sign.find(params[:id])
+    @location = Location.find(@sign.location_id)
+    qty = params[:update_qty]
+
+    respond_to do |format|
+      if @sign.update_quantity(params[:update_qty].to_i)
+        format.html {redirect_to location_index_path(@location.name.downcase), notice: "Quantity updated by #{qty}"}
+        format.js
+      else
+        format.html {edirect_to location_index_path(@location.name.downcase), notice: "Quantity update failed: An error has occurred."}
+      end 
+    end
+  end    
+
   end
 
   # DELETE /signs/1
@@ -92,4 +108,3 @@ class SignsController < ApplicationController
       format.json { head :no_content }
     end
   end
-end

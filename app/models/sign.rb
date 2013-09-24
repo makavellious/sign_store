@@ -15,6 +15,11 @@ class Sign < ActiveRecord::Base
 
   def update_quantity(n)
     self.quantity += n
+    true if self.save
+  end
+
+  def to_s
+    "#{self.id}#{self.name[0,3]}"
   end
 
   def self.by_location(location_name)

@@ -3,9 +3,13 @@ SignStore::Application.routes.draw do
 
 
   resources :signs
+  put 'signs/:id(.:format)/update_qty', to: 'signs#update_qty', as: 'update_qty_sign'
+
+  root to: 'locations#index'
 
   match '/:name/new', to: 'signs#new'
   match '/:name', to: 'signs#index', as: 'location_index'
+  
 
 
   # The priority is based upon order of creation:

@@ -18,26 +18,27 @@
   </thead>
   <tbody>
     <% @signs.each do |sign| %>
-      <tr>
+      <tr id="<%= "#{sign}" %>">
         <td><%= link_to sign.id, sign_path(sign) %></td>
         <td><%= sign.dir %></td>
         <td><%= sign.name %></td>
         <td><%= sign.mod %></td>
         <td><%= sign.mod_dir %></td>
-        <td>
-          <%= sign.quantity %>
-        </td>
+        <td class="qty"><%= sign.quantity %></td>
         <td><%= number_to_currency(sign.price) %></td>
-        <td><%=l sign.updated_at %></td>
+        <td class="updated"><%=l sign.updated_at %></td>
         <td>
-          <%= form_for sign do |f| %>
-          <%= f.hidden_field :quantity, :value => "#{sign.quantity - 1}" %>
-          <%= f.submit "-", :class => 'btn btn-mini' %>
+          <%= form_for sign, url: update_qty_sign_path(sign), remote: true do |f| %>
+          <%= hidden_field_tag :update_qty, -1 %>
+          <%= f.submit "-", :class => 'btn' %>
           <% end %>
-           <%= form_for sign do |f| %>
-          <%= f.hidden_field :quantity, :value => "#{sign.quantity + 1}" %>
-          <%= f.submit "+", :class => 'btn btn-mini' %>
+
+          <%= form_for sign, url: update_qty_sign_path(sign), remote: true do |f| %>
+          <%= hidden_field_tag :update_qty, 1 %>
+          <%= f.submit "+", :class => 'btn' %>
           <% end %>
+          
+
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       sign_path(sign),
                       :method => :delete,
