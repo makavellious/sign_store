@@ -12,8 +12,8 @@
       <th><%= model_class.human_attribute_name(:mod_dir) %></th>
       <th><%= model_class.human_attribute_name(:quantity) %></th>
       <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:updated_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%= model_class.human_attribute_name(:last_updated) %></th>
+      <th><%=t 'Change quantity' %></th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +26,7 @@
         <td><%= sign.mod_dir %></td>
         <td class="qty"><%= sign.quantity %></td>
         <td><%= number_to_currency(sign.price) %></td>
-        <td class="updated"><%=l sign.updated_at %></td>
+        <td class="updated"><%= sign.updated_at.localtime.strftime("%I:%M %P on %m-%d-%Y") %></td>
         <td>
           <%= form_for sign, url: update_qty_sign_path(sign), remote: true do |f| %>
           <%= hidden_field_tag :update_qty, -1 %>
