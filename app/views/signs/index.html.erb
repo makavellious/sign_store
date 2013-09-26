@@ -30,12 +30,12 @@
         <td>
           <%= form_for sign, url: update_qty_sign_path(sign), remote: true do |f| %>
           <%= hidden_field_tag :update_qty, -1 %>
-          <%= f.submit "-", :class => 'btn' %>
+          <%= f.submit "-", :class => 'btn btn-mini' %>
           <% end %>
 
           <%= form_for sign, url: update_qty_sign_path(sign), remote: true do |f| %>
           <%= hidden_field_tag :update_qty, 1 %>
-          <%= f.submit "+", :class => 'btn' %>
+          <%= f.submit "+", :class => 'btn btn-mini' %>
           <% end %>
           
 
@@ -55,5 +55,9 @@
             new_sign_path,
             :class => 'btn btn-primary' %>
 <% else %>
-<%= link_to t('.new', :default => t("helpers.links.new")), "#{@location.name.downcase}/new", class: 'btn btn-primary' %>
+<%= link_to t('.new', :default => t("helpers.links.new")), "#{@location.name.downcase}/new", class: 'btn btn-primary', remote: true %>
 <% end %>
+
+<div id="new-form-container">
+
+</div>

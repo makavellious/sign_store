@@ -10,6 +10,7 @@ class Sign < ActiveRecord::Base
   	self.quantity ||= 0
   	self.dir.upcase!
   	self.mod.upcase!
+    self.mod_dir.upcase!
   	self.name = self.name.titleize
   end
 

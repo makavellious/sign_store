@@ -37,6 +37,7 @@ class SignsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @sign }
+      format.js {@sign}
     end
   end
 
@@ -94,7 +95,6 @@ class SignsController < ApplicationController
     end
   end    
 
-  end
 
   # DELETE /signs/1
   # DELETE /signs/1.json
@@ -108,3 +108,5 @@ class SignsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+end

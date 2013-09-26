@@ -6,3 +6,58 @@ tbody tr td form {
 	margin: 0px;
 	display: inline;
 }
+
+.control-label.med {
+	width: auto;
+	padding-left: 6px;
+	padding-right: 6px;
+	text-align: center;
+}
+
+.med {
+	width: auto;
+}
+
+.numfield-med {
+	width: 40px;
+}
+
+.control-label.long {
+	width: auto;
+	padding-left: 6px;
+	padding-right: 6px;
+	text-align: center;
+}
+
+.long {
+	width: auto;
+}
+
+form.inline-style {
+
+	width: 70%;
+	border-radius: 5px;
+	border-color: #AAA;
+	border-width: 1px;
+	border-style: solid;
+	box-shadow: 2px 2px 8px #AAA;
+	padding: 5px 10px;
+
+	
+	.table td {
+		border-width: 0px;
+	}
+
+	td.form-actions{
+		background-color: transparent;
+		text-align: left;
+		width: auto;
+	}
+}
+
+#new-form-container{
+
+	display: none;
+}
+
+
