@@ -1,0 +1,56 @@
+<%= form_for @sign, :html => { :class => 'form-horizontal inline-style' } do |f| %>
+  <table class="table">
+    <tbody>
+        <tr>
+          <td>
+            <%= f.label :dir, :class =>"control-label med" %>
+            <%= f.text_field :dir, :size =>"2", :class => 'text_field med' %>
+          </td>
+          <td>
+            <%= f.label :name, :class => 'control-label long' %>
+            <%= f.text_field :name, :size=>"15", :class => 'text_field long' %>
+          </td>
+          <td>
+            <%= f.label :mod, :class => 'control-label med' %>
+            <%= f.text_field :mod, :size=>"5", :class => 'text_field med' %>
+          </td>
+          <td>
+            <%= f.label :mod_dir, :class => 'control-label med' %>
+            <%= f.text_field :mod_dir, :size=>"2", :class => 'text_field med' %>
+            
+          </td>
+          <td>
+            <%= f.label :quantity, :class => 'control-label med' %>
+            <%= f.number_field :quantity, :min=>"1", :class => 'number_field numfield-med' %>
+          </td>
+          <td>
+            <%= f.label :price, :class => 'control-label med' %>
+            <%= f.number_field :price, :min=>"5", :class => 'number_field numfield-med' %>
+          </td>
+
+          <% if @location.nil? %>
+
+          <td>
+            <%= f.label :location_id, :class => 'control-label' %>
+            <%= f.number_field :location_id, :class => 'number_field' %>
+          </td>
+
+          <% else %>
+          
+          <%= f.hidden_field :location_id, :value => "#{@location.id}" %>
+    
+          <% end %>
+
+         
+        </tr>
+        <tr>
+          <td colspan="6" class="form-actions">
+            <%= f.submit nil, :class => 'btn btn-primary' %>
+            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+              location_index_path(@location.name), :class => 'btn' %>
+          </td>
+        </tr>
+    
+    </tbody>
+  </table>
+<% end %>

@@ -2,8 +2,15 @@ SignStore::Application.routes.draw do
   resources :locations
 
 
-  resources :signs
-  put 'signs/:id(.:format)/update_qty', to: 'signs#update_qty', as: 'update_qty_sign'
+  resources :signs do
+    member do
+      put :update_qty
+    end
+  end
+
+
+
+  #put 'signs/:id(.:format)/update_qty', to: 'signs#update_qty', as: 'update_qty_sign'
 
   root to: 'locations#index'
 
